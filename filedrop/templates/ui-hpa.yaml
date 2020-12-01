@@ -1,0 +1,26 @@
+{{- if .Values.filedropui.autoscaling.enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.filedropui.name }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Values.filedropui.name }}
+  minReplicas: {{ .Values.filedropui.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.filedropui.autoscaling.maxReplicas }}
+  metrics:
+    {{- if .Values.filedropui.autoscaling.targetCPU }}
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: {{ .Values.filedropui.autoscaling.targetCPU }}
+    {{- end }}
+    {{- if .Values.filedropui.autoscaling.targetMemory }}
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: {{ .Values.filedropui.autoscaling.targetMemory  }}
+    {{- end }}
+{{- end }}

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.filedropui.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.filedropui.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.filedropui.name }}
+    spec:
+      containers:
+      - name: filedrop-ui
+        image: {{ .Values.imagestore.filedropapi.registry }}{{ .Values.imagestore.filedropapi.repository }}:{{ .Values.imagestore.filedropapi.tag }}
+        ports:
+        - containerPort: 80
+          name: http
+        {{- if .Values.filedropui.resources }}
+        resources: {{- toYaml .Values.filedropui.resources | nindent 10 }}
+        {{- end }}

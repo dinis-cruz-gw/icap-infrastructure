@@ -1,0 +1,39 @@
+environment:
+
+filedropapi:
+  name: filedrop-api
+  resources:
+    requests:
+      cpu: 100m
+    limits:
+      cpu: 400m
+
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPU: 50
+        
+filedropui:
+  name: filedrop-ui
+  resources:
+    requests:
+      cpu: 100m
+    limits:
+      cpu: 400m
+
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPU: 50
+
+imagestore:
+  filedropui:
+    registry: ""
+    repository: k8serviceaccount/sow-rest-ui
+    tag: latest
+  filedropapi:
+    registry: ""
+    repository: k8serviceaccount/sow-rest-api
+    tag: latest
