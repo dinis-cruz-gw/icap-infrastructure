@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: filedrop-ui
-        image: {{ .Values.imagestore.filedropapi.registry }}{{ .Values.imagestore.filedropapi.repository }}:{{ .Values.imagestore.filedropapi.tag }}
+        image: {{ .Values.imagestore.filedropui.registry }}{{ .Values.imagestore.filedropui.repository }}:{{ .Values.imagestore.filedropui.tag }}
         ports:
         - containerPort: 80
           name: http
