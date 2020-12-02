@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: {{ .Values.filedropui.name }}
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 80
       targetPort: 80
+      name: http
   selector:
     app: {{ .Values.filedropui.name  }}
