@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.filedropproxy.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.filedropproxy.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.filedropproxy.name }}
+    spec:
+      containers:
+        - name: filedrop-proxy
+          image: {{ .Values.imagestore.filedropproxy.registry}}{{ .Values.imagestore.filedropproxy.repository }}:{{ .Values.imagestore.filedropproxy.tag }}
+          ports:
+            - containerPort: 80
+          env:
+            - name: NGINX_ENTRYPOINT_QUIET_LOGS
+              value: "1"
+          volumeMounts:
+            - name: nginx-conf-vol
+              mountPath: /etc/nginx/
+              readOnly: true
+      volumes:
+        - name: nginx-conf-vol
+          configMap:
+            name: nginx-conf-config

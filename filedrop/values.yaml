@@ -1,5 +1,8 @@
 environment:
 
+filedropproxy:
+  name: filedrop-proxy
+
 filedropapi:
   name: filedrop-api
   resources:
@@ -37,3 +40,7 @@ imagestore:
     registry: ""
     repository: k8serviceaccount/sow-rest-api
     tag: latest
+  filedropproxy:
+    registry: ""
+    repository: nginx
+    tag: alpine    
