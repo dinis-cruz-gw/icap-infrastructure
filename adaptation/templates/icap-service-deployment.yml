@@ -47,6 +47,7 @@ spec:
               readOnly: true
             - name: c-icap-conf-vol
               mountPath: /usr/local/c-icap/conf
+              readOnly: true
           resources:
             limits:
               cpu: "1"
