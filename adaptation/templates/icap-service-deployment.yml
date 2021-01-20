@@ -45,6 +45,8 @@ spec:
             - name: tls-config-vol
               mountPath: /usr/local/c-icap/cert
               readOnly: true
+            - name: c-icap-conf-vol
+              mountPath: /usr/local/c-icap/conf
           resources:
             limits:
               cpu: "1"
@@ -77,3 +79,7 @@ spec:
         - name: tls-config-vol
           secret:
             secretName: icap-service-tls-config
+        - name: c-icap-conf-vol
+          configMap:
+            name: c-icap-service-config
+         

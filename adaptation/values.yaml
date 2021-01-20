@@ -62,6 +62,37 @@ icapservice:
   enableFileId: true
 icapserviceconfig:
   processingtimeoutduration: 00:01:00
+cicapservice:
+  conf:
+    PidFile: /var/run/c-icap/c-icap.pid
+    CommandsSocket: /var/run/c-icap/c-icap.ctl
+    Timeout: 300
+    MaxKeepAliveRequests: 100
+    KeepAliveTimeout: 600
+    StartServers: 3
+    MaxServers: 10
+    MinSpareThreads: 10
+    MaxSpareThreads: 20
+    ThreadsPerChild: 10
+    MaxRequestsPerChild: 0
+    Port: 1344
+    TlsPort: 1345 tls-method=TLSv1_2 cert=@prefix@/cert/tls.crt key=@prefix@/cert/tls.key
+    ServerAdmin: you@your.address
+    ServerName: YourServerName
+    TmpDir: /var/tmp
+    MaxMemObject: 131072
+    DebugLevel: 10
+    Pipelining: !!string on
+    SupportBuggyClients: !!string off
+    ModulesDir: /usr/local/c-icap/lib/c_icap
+    ServicesDir: /usr/local/c-icap/lib/c_icap
+    TemplateDir: /usr/local/c-icap/share/c_icap/templates/
+    TemplateDefaultLanguage: en
+    LoadMagicFile: /usr/local/c-icap/etc/c-icap.magic
+    RemoteProxyUsers: !!string off
+    RemoteProxyUserHeader: X-Authenticated-User
+    RemoteProxyUserHeaderEncoded: !!string on
+  resource: gw_rebuild.conf
 icapservicemetricsexporter:
   icaphost: localhost
   icapport: 1344
