@@ -93,6 +93,12 @@ cicapservice:
     RemoteProxyUserHeader: X-Authenticated-User
     RemoteProxyUserHeaderEncoded: !!string on
   resource: gw_rebuild.conf
+  rebuild:
+    Service: gw_rebuild gw_rebuild.so
+    gw_rebuild.MaxObjectSize: 2000M
+    gw_rebuild.Allow204Responses: !!string on
+    gw_rebuild.ProxyAppLocation: /usr/local/bin/cloud-proxy-app
+    gw_rebuild.DataCleanup: !!string off
 icapservicemetricsexporter:
   icaphost: localhost
   icapport: 1344

@@ -48,6 +48,9 @@ spec:
             - name: c-icap-conf-vol
               mountPath: /usr/local/c-icap/conf
               readOnly: true
+            - name: gw-rebuild-conf-vol
+              mountPath: /usr/local/c-icap/gw-rebuid-conf
+              readOnly: true              
           resources:
             limits:
               cpu: "1"
@@ -83,4 +86,6 @@ spec:
         - name: c-icap-conf-vol
           configMap:
             name: c-icap-service-config
-         
+        - name: gw-rebuild-conf-vol            
+          configMap:
+            name: gw-rebuild-config
