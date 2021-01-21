@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: c-icap-service-config
 data:
-  gw-c-icap.conf: |-
+  c-icap.conf: |-
     {{- range $key, $val := .Values.cicapservice.conf }}
     {{ $key }} {{ $val }}
     {{- end}}
